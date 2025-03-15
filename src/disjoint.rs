@@ -115,20 +115,19 @@ impl<F> Decomposition<F> {
     #[allow(non_snake_case)]
     fn generate_rectangles(
         &self,
-        kmr_values: &KongMountRoscoeValues<F>,
+        p: F,
+        rectangle: &Rectangle<F>,
     ) -> impl IntoIterator<Item = Rectangle<F>> + use<F>
     where
         F: 'static + RealField + Copy,
         F: num_traits::cast::AsPrimitive<usize>,
         usize: num_traits::cast::AsPrimitive<F>,
     {
+        let min = rectangle.min;
+        let A = rectangle.max[0] - rectangle.min[0];
+        let B = rectangle.max[1] - rectangle.min[1];
+
         use Decomposition::*;
-        #[rustfmt::skip]
-        let KongMountRoscoeValues {
-            p,
-            h1, h2, k1, k2,
-            A,  B,  C,  S,
-        } = kmr_values.clone();
         match self {
             row(hrow) => {
                 let hrow: F = *hrow;
