@@ -195,6 +195,33 @@ impl<F> Decomposition<F> {
     }
 }
 
+fn create_rectangles<F>(
+    n_rows_range: std::ops::Range<usize>,
+    n_cols_range: std::ops::Range<usize>,
+    dx_row: F,
+    dx_col: F,
+    x0_row: F,
+    x0_col: F,
+) -> impl IntoIterator<Item = Rectangle<F>>
+where
+    F: 'static + RealField + Copy,
+    F: num_traits::cast::AsPrimitive<usize>,
+    usize: num_traits::cast::AsPrimitive<F>,
+{
+    (n_rows_range).flat_map(move |n| {
+        (n_cols_range).clone().map(move |m| {
+            let n: F = n.as_();
+            let m: F = m.as_();
+            let min = [x0_col + m * dx_col, x0_row + n * dx_row];
+            let max = [
+                x0_col + (m + F::one()) * dx_col,
+                x0_row + (n + F::one()) * dx_row,
+            ];
+            Rectangle { min, max }
+        })
+    })
+}
+
 /// See paper:
 /// https://scispace.com/pdf/the-decomposition-of-a-rectangle-into-rectangles-of-minimal-3whu99wjdy.pdf
 #[allow(non_snake_case)]
