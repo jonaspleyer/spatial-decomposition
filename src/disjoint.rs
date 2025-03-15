@@ -271,18 +271,7 @@ where
     }
 
     let kmr_values = KongMountRoscoeValues::calculate(A, B, n_subdomains);
-    let decomposition = Decomposition::figure_out::<F>(&kmr_values);
-
-    println!(
-        "{}",
-        match decomposition {
-            Some(Decomposition::h1_row) => "h1_row",
-            Some(Decomposition::h2_row) => "h2_row",
-            Some(Decomposition::k1_col) => "k1_col",
-            Some(Decomposition::k2_col) => "k2_col",
-            None => "none",
-        }
-    );
+    let decomposition = Decomposition::figure_out(&kmr_values);
 
     decomposition
         .map(|d| d.generate_rectangles(n_subdomains_float, rectangle))
