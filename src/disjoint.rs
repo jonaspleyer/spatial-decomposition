@@ -16,11 +16,9 @@ pub struct Cuboid<F, const D: usize> {
 pub type Rectangle<F> = Cuboid<F, 2>;
 
 #[allow(non_camel_case_types)]
-enum Decomposition {
-    h1_row,
-    h2_row,
-    k1_col,
-    k2_col,
+enum Decomposition<F> {
+    row(F),
+    col(F),
 }
 
 #[allow(non_snake_case)]
@@ -77,9 +75,9 @@ where
     }
 }
 
-impl Decomposition {
+impl<F> Decomposition<F> {
     #[rustfmt::skip]
-    fn figure_out<F>(values: &KongMountRoscoeValues<F>) -> Option<Decomposition>
+    fn figure_out(values: &KongMountRoscoeValues<F>) -> Option<Decomposition<F>>
     where
         F: RealField + Copy,
     {
@@ -94,21 +92,19 @@ impl Decomposition {
         let k0 = (p / h2).floor();
         let k3 = (p / h1).ceil();
 
-        // println!("{h1} {h2} {k1} {k2}");
-        // println!("{h0} {h3} {k0} {k3}");
-        // println!("{A} {B} {C} {S}");
+        if h1==h2 && k1==k2 {return Some(col(h1));}
 
         //  Lemma 2.9
-        if h0 < h1 && B / k0 <= S {return Some(h2_row);}
-        if k3 > k2 && A / h0 >= C {return Some(h1_row);}
-        if h0 < h1 && A / h0 <= S {return Some(k2_col);}
-        if h3 > h2 && A / h3 >= C {return Some(k1_col);}
+        if h0 < h1 && B / k0 <= S {return Some(row(h2));}
+        if k3 > k2 && A / h0 >= C {return Some(row(h1));}
+        if h0 < h1 && A / h0 <= S {return Some(col(k2));}
+        if h3 > h2 && A / h3 >= C {return Some(col(k1));}
 
         // Lemma 2.10
-        if h0 == h1 && A / h1 <= S && A / h2 >= C {return Some(k2_col);}
-        if h3 == h2 && A / h1 <= S && A / h2 >= C {return Some(k1_col);}
-        if k0 == k1 && B / k1 <= S && B / k2 >= C {return Some(h2_row);}
-        if k3 == k2 && B / k1 <= S && B / k2 >= C {return Some(h1_row);}
+        if h0 == h1 && A / h1 <= S && A / h2 >= C {return Some(col(k2));}
+        if h3 == h2 && A / h1 <= S && A / h2 >= C {return Some(col(k1));}
+        if k0 == k1 && B / k1 <= S && B / k2 >= C {return Some(row(h2));}
+        if k3 == k2 && B / k1 <= S && B / k2 >= C {return Some(row(h1));}
 
         // TODO is this exhaustive?
         // -> probably not!
@@ -116,7 +112,8 @@ impl Decomposition {
         None
     }
 
-    fn generate_rectangles<F>(
+    #[allow(non_snake_case)]
+    fn generate_rectangles(
         &self,
         kmr_values: &KongMountRoscoeValues<F>,
     ) -> impl IntoIterator<Item = Rectangle<F>> + use<F>
@@ -133,43 +130,68 @@ impl Decomposition {
             A,  B,  C,  S,
         } = kmr_values.clone();
         match self {
-            h1_row => todo!(),
-            h2_row => {
-                let dx_row = A / h1;
-                let n_rows1: usize = (p - h1 * (p / h1).floor()).round().as_();
-                let n_rows2: usize = (h1 * (p / h1).ceil() - p).round().as_();
-                let n_cols1 = (p / h1).ceil();
-                let n_cols2 = (p / h1).floor();
-                let dx_col1 = B / n_cols1;
-                let dx_col2 = B / n_cols2;
+            row(hrow) => {
+                let hrow: F = *hrow;
+                let dx_row = B / hrow;
+                let (n_rows1, n_rows2, n_cols1, n_cols2): (usize, usize, F, F) =
+                    if (p / hrow).round() == p / hrow {
+                        (hrow.as_(), 0, (p / hrow), F::zero())
+                    } else {
+                        (
+                            (p - hrow * (p / hrow).floor()).round().as_(),
+                            (hrow * (p / hrow).ceil() - p).round().as_(),
+                            (p / hrow).ceil(),
+                            (p / hrow).floor(),
+                        )
+                    };
+                let dx_col1 = A / n_cols1;
+                let dx_col2 = A / n_cols2;
                 let n_cols1: usize = n_cols1.as_();
                 let n_cols2: usize = n_cols2.as_();
 
-                let mut rects1: Vec<_> = (0..n_rows1)
-                    .flat_map(|n| {
-                        (0..n_cols1).map(move |m| {
-                            let n: F = n.as_();
-                            let m: F = m.as_();
-                            Rectangle {
-                                min: [n * dx_row, m * dx_col1],
-                                max: [(n + F::one()) * dx_row, (m + F::one()) * dx_col1],
-                            }
-                        })
-                    })
-                    .collect();
-                let rects2 = (0..n_rows2).flat_map(|n| {
-                    (0..n_cols2).map(move |m| Rectangle {
-                        min: [n_rows1.as_() * dx_row + n.as_() * dx_row, m.as_() * dx_col2],
-                        max: [
-                            n_rows1.as_() * dx_row + (n + 1).as_() * dx_row,
-                            (m + 1).as_() * dx_col2,
-                        ],
-                    })
-                });
-                rects1.extend(rects2);
-                rects1
+                let rects1 =
+                    create_rectangles(0..n_rows1, 0..n_cols1, dx_row, dx_col1, min[1], min[0]);
+                let rects2 = create_rectangles(
+                    n_rows1..n_rows1 + n_rows2,
+                    0..n_cols2,
+                    dx_row,
+                    dx_col2,
+                    min[1],
+                    min[0],
+                );
+                rects1.into_iter().chain(rects2)
             }
-            _ => unimplemented!(),
+            col(kcol) => {
+                let kcol: F = *kcol;
+                let dx_col = A / kcol;
+                let (n_cols1, n_cols2, n_rows1, n_rows2): (usize, usize, F, F) =
+                    if (p / kcol).round() == p / kcol {
+                        (kcol.as_(), 0, p / kcol, F::zero())
+                    } else {
+                        (
+                            (p - kcol * (p / kcol).floor()).round().as_(),
+                            (kcol * (p / kcol).ceil() - p).round().as_(),
+                            (p / kcol).ceil(),
+                            (p / kcol).floor(),
+                        )
+                    };
+                let dx_row1 = B / n_rows1;
+                let dx_row2 = B / n_rows2;
+                let n_rows1: usize = n_rows1.as_();
+                let n_rows2: usize = n_rows2.as_();
+
+                let rects1 =
+                    create_rectangles(0..n_rows1, 0..n_cols1, dx_row1, dx_col, min[1], min[0]);
+                let rects2 = create_rectangles(
+                    n_rows1..n_rows1 + n_rows2,
+                    0..n_cols2,
+                    dx_row2,
+                    dx_col,
+                    min[1],
+                    min[0],
+                );
+                rects1.into_iter().chain(rects2)
+            }
         }
     }
 }
