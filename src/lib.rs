@@ -36,6 +36,9 @@ pub struct Cuboid<F, const D: usize> {
 /// `2D` variant of the [Cuboid]
 pub type Rectangle<F> = Cuboid<F, 2>;
 
+/// `1D` variant of the [Cuboid]
+pub type Line<F> = Cuboid<F, 1>;
+
 mod kong_mount_roscoe;
 
 pub use kong_mount_roscoe::*;
