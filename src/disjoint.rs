@@ -285,7 +285,7 @@ where
     );
 
     decomposition
-        .map(|d| d.generate_rectangles(&kmr_values))
+        .map(|d| d.generate_rectangles(n_subdomains_float, rectangle))
         .unwrap()
         .into_iter()
         .collect()
