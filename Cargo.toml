@@ -10,10 +10,7 @@ description = "Algorithms to partition 2D spaces."
 keywords = [
     "spatial",
     "decomposition",
-    "numerics",
-    "solver",
-    "tearing",
-    "interconnect",
+    "domain",
 ]
 
 [dependencies]
