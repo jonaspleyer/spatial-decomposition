@@ -50,7 +50,7 @@ where
         let k2 = (B * p / A).sqrt().ceil();
 
         let mut C = p;
-        let mut S = p;
+        let mut S = F::zero();
         for k in 1..n_subdomains {
             for h in 1..n_subdomains {
                 let k = k.as_();
