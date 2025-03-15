@@ -358,35 +358,81 @@ fn test_5x3_in_7() {
     };
     let rects = kong_mount_roscoe(&rectangle, 7.try_into().unwrap());
     assert_eq!(rects.len(), 7);
-    // Row 1
+
+    for i in 0..4 {
+        let dx = (rectangle.max[0] - rectangle.min[0]) / 4.;
+        let i = i as f64;
+        assert!(rects.contains(&Rectangle {
+            min: [i * dx, 0.],
+            max: [(i + 1.) * dx, 1.5],
+        }));
+    }
+    for i in 0..3 {
+        let dx = (rectangle.max[0] - rectangle.min[0]) / 3.;
+        let i = i as f64;
+        assert!(rects.contains(&Rectangle {
+            min: [i * dx, 1.5],
+            max: [(i + 1.) * dx, 3.]
+        }))
+    }
+}
+
+#[test]
+fn test_6x6_in_14() {
+    let rectangle = Rectangle {
+        min: [-60., 0.],
+        max: [0., 60.],
+    };
+    let rects = kong_mount_roscoe(&rectangle, 14.try_into().unwrap());
+    assert_eq!(rects.len(), 14);
+    for i in 0..5 {
+        for j in 0..2 {
+            let dx = 60. / 5.;
+            let i = i as f64;
+            let j = j as f64;
+            let dy = 60. / 3.;
+            let r = Rectangle {
+                min: [i * dx - 60., j * dy],
+                max: [(i + 1.) * dx - 60., (j + 1.) * dy],
+            };
+            assert!(rects.contains(&r));
+        }
+    }
+    for i in 0..4 {
+        let i = i as f64;
+        let j = 2.;
+        let dx = 60. / 4.;
+        let dy = 60. / 3.;
+        let r = Rectangle {
+            min: [i * dx - 60., j * dy],
+            max: [(i + 1.) * dx - 60., (j + 1.) * dy],
+        };
+        assert!(rects.contains(&r));
+    }
+}
+
+#[test]
+fn test_square_into_4() {
+    let rectangle = Rectangle {
+        min: [-40.0; 2],
+        max: [-20.0; 2],
+    };
+    let rects = kong_mount_roscoe(&rectangle, 4.try_into().unwrap());
+    assert_eq!(rects.len(), 4);
     assert!(rects.contains(&Rectangle {
-        min: [0.; 2],
-        max: [5. / 3., 1.],
+        min: [-40.; 2],
+        max: [-30.; 2]
     }));
     assert!(rects.contains(&Rectangle {
-        min: [0., 1.],
-        max: [5. / 3., 2.],
+        min: [-40.0, -30.0],
+        max: [-30.0, -20.0]
     }));
     assert!(rects.contains(&Rectangle {
-        min: [0., 2.],
-        max: [5. / 3., 3.],
-    }));
-    // Row 2
-    assert!(rects.contains(&Rectangle {
-        min: [5. / 3., 0.],
-        max: [2. * 5. / 3., 1.5],
+        min: [-30.0, -40.0],
+        max: [-20.0, -30.0]
     }));
     assert!(rects.contains(&Rectangle {
-        min: [5. / 3., 1.5],
-        max: [2. * 5. / 3., 3.],
-    }));
-    // Row 3
-    assert!(rects.contains(&Rectangle {
-        min: [5. / 3. * 2., 0.],
-        max: [5., 1.5],
-    }));
-    assert!(rects.contains(&Rectangle {
-        min: [5. / 3. * 2., 1.5],
-        max: [5., 3.],
+        min: [-30.0; 2],
+        max: [-20.0; 2]
     }));
 }
