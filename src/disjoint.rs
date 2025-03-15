@@ -242,8 +242,88 @@ where
     })
 }
 
-/// See paper:
-/// https://scispace.com/pdf/the-decomposition-of-a-rectangle-into-rectangles-of-minimal-3whu99wjdy.pdf
+/// Partitions a rectangle into multiple smaller rectangles
+///
+/// This algorithms follows the paper by [Kong, Mount and Roscoe](https://scispace.com/pdf/the-decomposition-of-a-rectangle-into-rectangles-of-minimal-3whu99wjdy.pdf)
+///
+/// ```
+/// use spatial_decomposition::{kong_mount_roscoe, Rectangle};
+///
+/// let domain = Rectangle {
+///     min: [0., 40.],
+///     max: [100., 240.],
+/// };
+///
+/// let n_subdomains = 9;
+/// let subdomains = kong_mount_roscoe(&domain, n_subdomains.try_into().unwrap());
+///
+/// assert_eq!(subdomains.len(), 9);
+///
+/// for subdomain in subdomains {
+/// }
+/// ```
+///
+/// ## Examples
+///
+/// Cases of very long/wide rectangles satisfying n_subdomain < max(a/b, b/a)
+/// will be split intuitively along the long axis.
+///
+/// ```text
+///                    B = 90
+///        ┌─────────┬─────────┬─────────┐
+///        │         │         │         │
+/// A = 20 │         │         │         │
+///        │         │         │         │
+///        └─────────┴─────────┴─────────┘
+/// ```
+///
+/// ```
+/// # use spatial_decomposition::{kong_mount_roscoe, Rectangle};
+/// # use approx::assert_abs_diff_eq;
+/// let domain = Rectangle {
+///     min: [0.0; 2],
+///     max: [90.0, 20.0],
+/// };
+/// let subdomains = kong_mount_roscoe(
+///     &domain,
+///     3.try_into().unwrap()
+/// );
+/// // ┌─────────┬─
+/// // │         │
+/// // │         │
+/// // │         │
+/// // └─────────┴─
+/// assert_abs_diff_eq!(
+///     subdomains[0],
+///     &Rectangle {
+///         min: [0.0; 2],
+///         max: [30.0, 20.0],
+/// });
+///
+/// //           ┬─────────┬─
+/// //           │         │
+/// //           │         │
+/// //           │         │
+/// //           ┴─────────┴─
+/// assert_abs_diff_eq!(
+///     subdomains[1],
+///     &Rectangle {
+///         min: [30.0, 0.0],
+///         max: [60.0, 20.0],
+/// });
+///
+/// //                     ┬─────────┐
+/// //                     │         │
+/// //                     │         │
+/// //                     │         │
+/// //                     ┴─────────┘
+/// assert_abs_diff_eq!(
+///     subdomains[2],
+///     &Rectangle {
+///         min: [60.0, 0.0],
+///         max: [90.0, 20.0],
+/// });
+/// ```
 #[allow(non_snake_case)]
 pub fn kong_mount_roscoe<F>(
     rectangle: &Rectangle<F>,
