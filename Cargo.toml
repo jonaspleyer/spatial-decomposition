@@ -5,6 +5,7 @@ edition = "2024"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/jonaspleyer/spatial-decomposition"
 documentation = "https://docs.rs/spatial-decomposition"
+description = "Algorithms to partition 2D spaces."
 
 keywords = [
     "spatial",
