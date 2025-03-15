@@ -247,12 +247,12 @@ where
     //   │         │         │         │
     //   └─────────┴─────────┴─────────┘
     let n_subdomains_float: F = n_subdomains.as_();
-    let A = rectangle.max[0] - rectangle.min[0];
-    let B = rectangle.max[1] - rectangle.min[1];
-    let ratio_max = (A / B).max(B / A);
+    let B = rectangle.max[0] - rectangle.min[0];
+    let A = rectangle.max[1] - rectangle.min[1];
+    let ratio_max = (B / A).max(A / B);
     if n_subdomains_float <= ratio_max {
-        if A >= B {
-            let dx = A / n_subdomains_float;
+        if B >= A {
+            let dx = B / n_subdomains_float;
             return (0..n_subdomains)
                 .map(|n| Rectangle {
                     min: [rectangle.min[0] + n.as_() * dx, rectangle.min[1]],
@@ -260,7 +260,7 @@ where
                 })
                 .collect();
         } else {
-            let dx = B / n_subdomains_float;
+            let dx = A / n_subdomains_float;
             return (0..n_subdomains)
                 .map(|n| Rectangle {
                     min: [rectangle.min[0], rectangle.min[1] + n.as_() * dx],
