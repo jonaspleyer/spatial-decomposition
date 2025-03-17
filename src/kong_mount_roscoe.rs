@@ -217,6 +217,9 @@ where
 ///
 /// This algorithms follows the paper by [Kong, Mount and Roscoe](https://scispace.com/pdf/the-decomposition-of-a-rectangle-into-rectangles-of-minimal-3whu99wjdy.pdf)
 ///
+/// This algorithms divides a given rectangle into multiple smaller rectangles and minimizes the
+/// maximum rectangle perimeter.
+///
 /// ```
 /// use spatial_decomposition::{kong_mount_roscoe, Rectangle};
 ///
