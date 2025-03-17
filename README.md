@@ -7,5 +7,5 @@
 # spatial_decomposition
 
 This crate implements algorithms to decompose spaces into subdomains.
-The crated partitions can be reused within numerical solvers such as FETI (finite element tearing
+The created partitions can be reused within numerical solvers such as FETI (finite element tearing
 and interconnect) or other methods.
