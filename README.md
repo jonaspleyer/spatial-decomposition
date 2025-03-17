@@ -101,4 +101,3 @@ maximum rectangle perimeter.
         <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/digitize_kmr_1/square_9x9_in_6.png"></td>
     </tr>
 </table>
-
