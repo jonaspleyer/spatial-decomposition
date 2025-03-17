@@ -115,14 +115,14 @@ impl<F> Decomposition<F> {
         usize: num_traits::cast::AsPrimitive<F>,
     {
         let min = rectangle.min;
-        let A = rectangle.max[0] - rectangle.min[0];
-        let B = rectangle.max[1] - rectangle.min[1];
+        let B = rectangle.max[0] - rectangle.min[0];
+        let A = rectangle.max[1] - rectangle.min[1];
 
         use Decomposition::*;
         match self {
             row(hrow) => {
                 let hrow: F = *hrow;
-                let dx_row = B / hrow;
+                let dx_row = A / hrow;
                 let (n_rows1, n_rows2, n_cols1, n_cols2): (usize, usize, F, F) =
                     if (p / hrow).round() == p / hrow {
                         (hrow.as_(), 0, (p / hrow), F::zero())
@@ -134,8 +134,8 @@ impl<F> Decomposition<F> {
                             (p / hrow).floor(),
                         )
                     };
-                let dx_col1 = A / n_cols1;
-                let dx_col2 = A / n_cols2;
+                let dx_col1 = B / n_cols1;
+                let dx_col2 = B / n_cols2;
                 let n_cols1: usize = n_cols1.as_();
                 let n_cols2: usize = n_cols2.as_();
 
@@ -153,7 +153,7 @@ impl<F> Decomposition<F> {
             }
             col(kcol) => {
                 let kcol: F = *kcol;
-                let dx_col = A / kcol;
+                let dx_col = B / kcol;
                 let (n_cols1, n_cols2, n_rows1, n_rows2): (usize, usize, F, F) =
                     if (p / kcol).round() == p / kcol {
                         (kcol.as_(), 0, p / kcol, F::zero())
@@ -165,8 +165,8 @@ impl<F> Decomposition<F> {
                             (p / kcol).floor(),
                         )
                     };
-                let dx_row1 = B / n_rows1;
-                let dx_row2 = B / n_rows2;
+                let dx_row1 = A / n_rows1;
+                let dx_row2 = A / n_rows2;
                 let n_rows1: usize = n_rows1.as_();
                 let n_rows2: usize = n_rows2.as_();
 
