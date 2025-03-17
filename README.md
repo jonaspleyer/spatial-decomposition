@@ -17,19 +17,19 @@ maximum rectangle perimeter.
 
 <table style="width: 60%">
     <tr>
-        <td><img style="width: 100%;" src="plots/square2.png"></td>
-        <td><img style="width: 100%;" src="plots/square3.png"></td>
-        <td><img style="width: 100%;" src="plots/square4.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/square2.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/square3.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/square4.png"></td>
     </tr>
     <tr>
-        <td><img style="width: 100%;" src="plots/square5.png"></td>
-        <td><img style="width: 100%;" src="plots/square6.png"></td>
-        <td><img style="width: 100%;" src="plots/square7.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/square5.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/square6.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/square7.png"></td>
     </tr>
     <tr>
-        <td><img style="width: 100%;" src="plots/square8.png"></td>
-        <td><img style="width: 100%;" src="plots/square9.png"></td>
-        <td><img style="width: 100%;" src="plots/square10.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/square8.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/square9.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/square10.png"></td>
     </tr>
 </table>
 
@@ -37,14 +37,14 @@ maximum rectangle perimeter.
 
 <table style="width: 60%">
     <tr>
-        <td><img style="width: 100%;" src="plots/wide_rect2.png"></td>
-        <td><img style="width: 100%;" src="plots/wide_rect3.png"></td>
-        <td><img style="width: 100%;" src="plots/wide_rect4.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/wide_rect2.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/wide_rect3.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/wide_rect4.png"></td>
     </tr>
     <tr>
-        <td><img style="width: 100%;" src="plots/wide_rect5.png"></td>
-        <td><img style="width: 100%;" src="plots/wide_rect6.png"></td>
-        <td><img style="width: 100%;" src="plots/wide_rect7.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/wide_rect5.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/wide_rect6.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/wide_rect7.png"></td>
     </tr>
 </table>
 
@@ -52,13 +52,13 @@ maximum rectangle perimeter.
 
 <table style="width: 60%">
     <tr>
-        <td><img style="width: 100%;" src="plots/other_rect2.png"></td>
-        <td><img style="width: 100%;" src="plots/other_rect3.png"></td>
-        <td><img style="width: 100%;" src="plots/other_rect4.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/other_rect2.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/other_rect3.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/other_rect4.png"></td>
     </tr>
     <tr>
-        <td><img style="width: 100%;" src="plots/other_rect5.png"></td>
-        <td><img style="width: 100%;" src="plots/other_rect6.png"></td>
-        <td><img style="width: 100%;" src="plots/other_rect7.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/other_rect5.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/other_rect6.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/other_rect7.png"></td>
     </tr>
 </table>
