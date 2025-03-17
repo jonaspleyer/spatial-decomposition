@@ -10,7 +10,7 @@ This crate implements algorithms to decompose spaces into subdomains.
 The created partitions can be reused within numerical solvers such as FETI (finite element tearing
 and interconnect) or other methods.
 
-# Kong Mount Roscoe Algorithm
+# Kong-Mount-Roscoe (KMR) Decomposition
 This algorithms divides a given rectangle into multiple smaller rectangles and minimizes the
 maximum rectangle perimeter.
 ## Square
@@ -62,3 +62,43 @@ maximum rectangle perimeter.
         <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/other_rect7.png"></td>
     </tr>
 </table>
+
+# Kong-Mount-Roscoe (KMR) Digitization
+
+## Wide Rectangle
+
+<table style="width: 60%">
+    <tr>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/digitize_kmr_1/rectangle_1_in_4.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/digitize_kmr_1/rectangle_2_in_4.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/digitize_kmr_1/rectangle_3_in_4.png"></td>
+    </tr>
+</table>
+
+
+## Rectangle
+
+<table style="width: 60%">
+    <tr>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/digitize_kmr_1/rectangle_4_in_4.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/digitize_kmr_1/rectangle_5_in_5.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/digitize_kmr_1/rectangle_6_in_6.png"></td>
+    </tr>
+</table>
+
+## Square
+<table style="width: 60%">
+    <tr>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/digitize_kmr_1/square_3x3_in_2.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/digitize_kmr_1/square_3x3_in_3.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/digitize_kmr_1/square_4x4_in_3.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/digitize_kmr_1/square_4x4_in_4.png"></td>
+    </tr>
+    <tr>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/digitize_kmr_1/square_9x9_in_3.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/digitize_kmr_1/square_9x9_in_4.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/digitize_kmr_1/square_9x9_in_5.png"></td>
+        <td><img style="width: 100%;" src="https://raw.githubusercontent.com/jonaspleyer/spatial-decomposition/refs/heads/main/plots/digitize_kmr_1/square_9x9_in_6.png"></td>
+    </tr>
+</table>
+
