@@ -4,7 +4,7 @@
 //! ## Overview
 //! | Dim | Domain | Method | Paper |
 //! | --- | --- | --- | --- |
-//! | `2D` | [Rectangle] | [kong_mount_roscoe] | [Kong, Mount and Roscoe](https://scispace.com/pdf/the-decomposition-of-a-rectangle-into-rectangles-of-minimal-3whu99wjdy.pdf) |
+//! | `2D` | [Rectangle] | [kmr_decompose] | [Kong, Mount and Roscoe](https://scispace.com/pdf/the-decomposition-of-a-rectangle-into-rectangles-of-minimal-3whu99wjdy.pdf) |
 
 use approx_derive::RelativeEq;
 

@@ -221,7 +221,7 @@ where
 /// maximum rectangle perimeter.
 ///
 /// ```
-/// use spatial_decomposition::{kong_mount_roscoe, Rectangle};
+/// use spatial_decomposition::{kmr_decompose, Rectangle};
 ///
 /// let domain = Rectangle {
 ///     min: [0., 40.],
@@ -229,7 +229,7 @@ where
 /// };
 ///
 /// let n_subdomains = 9;
-/// let subdomains = kong_mount_roscoe(&domain, n_subdomains.try_into().unwrap());
+/// let subdomains = kmr_decompose(&domain, n_subdomains.try_into().unwrap());
 ///
 /// assert_eq!(subdomains.len(), 9);
 ///
@@ -252,13 +252,13 @@ where
 /// ```
 ///
 /// ```
-/// # use spatial_decomposition::{kong_mount_roscoe, Rectangle};
+/// # use spatial_decomposition::{kmr_decompose, Rectangle};
 /// # use approx::assert_abs_diff_eq;
 /// let domain = Rectangle {
 ///     min: [0.0; 2],
 ///     max: [90.0, 20.0],
 /// };
-/// let subdomains = kong_mount_roscoe(
+/// let subdomains = kmr_decompose(
 ///     &domain,
 ///     3.try_into().unwrap()
 /// );
@@ -299,10 +299,7 @@ where
 /// });
 /// ```
 #[allow(non_snake_case)]
-pub fn kong_mount_roscoe<F>(
-    rectangle: &Rectangle<F>,
-    n_subdomains: NonZeroUsize,
-) -> Vec<Rectangle<F>>
+pub fn kmr_decompose<F>(rectangle: &Rectangle<F>, n_subdomains: NonZeroUsize) -> Vec<Rectangle<F>>
 where
     F: 'static + Copy + RealField,
     F: num_traits::cast::AsPrimitive<usize>,
@@ -355,24 +352,24 @@ where
 }
 
 #[test]
-fn test_identity() {
+fn kmr_decompose_identity() {
     let rectangle = Rectangle {
         min: [0.0; 2],
         max: [10.0; 2],
     };
-    let rects = kong_mount_roscoe(&rectangle, 1.try_into().unwrap());
+    let rects = kmr_decompose(&rectangle, 1.try_into().unwrap());
     assert_eq!(rects.len(), 1);
     assert_eq!(rects[0], rectangle);
 }
 
 #[test]
-fn test_very_wide() {
+fn kmr_decompose_very_wide() {
     use approx::assert_abs_diff_eq;
     let rectangle = Rectangle {
         min: [0.0; 2],
         max: [100.0, 10.0],
     };
-    let rects = kong_mount_roscoe(&rectangle, 4.try_into().unwrap());
+    let rects = kmr_decompose(&rectangle, 4.try_into().unwrap());
     assert_eq!(rects.len(), 4);
     assert_abs_diff_eq!(
         rects[0],
@@ -405,13 +402,13 @@ fn test_very_wide() {
 }
 
 #[test]
-fn test_very_long() {
+fn kmr_decompose_very_long() {
     use approx::assert_abs_diff_eq;
     let rectangle = Rectangle {
         min: [-10f32, -200f32],
         max: [10f32, 200f32],
     };
-    let rects = kong_mount_roscoe(&rectangle, 10.try_into().unwrap());
+    let rects = kmr_decompose(&rectangle, 10.try_into().unwrap());
     let dx = (rectangle.max[1] - rectangle.min[1]) / 10f32;
     for (n, rect) in rects.into_iter().enumerate() {
         assert_abs_diff_eq!(
@@ -425,12 +422,12 @@ fn test_very_long() {
 }
 
 #[test]
-fn test_5x3_in_7() {
+fn kmr_decompose_5x3_in_7() {
     let rectangle = Rectangle {
         min: [0.0; 2],
         max: [5.0, 3.0],
     };
-    let rects = kong_mount_roscoe(&rectangle, 7.try_into().unwrap());
+    let rects = kmr_decompose(&rectangle, 7.try_into().unwrap());
     assert_eq!(rects.len(), 7);
 
     for i in 0..4 {
@@ -452,12 +449,12 @@ fn test_5x3_in_7() {
 }
 
 #[test]
-fn test_6x6_in_14() {
+fn kmr_decompose_6x6_in_14() {
     let rectangle = Rectangle {
         min: [-60., 0.],
         max: [0., 60.],
     };
-    let rects = kong_mount_roscoe(&rectangle, 14.try_into().unwrap());
+    let rects = kmr_decompose(&rectangle, 14.try_into().unwrap());
     assert_eq!(rects.len(), 14);
     for i in 0..5 {
         for j in 0..2 {
@@ -486,12 +483,12 @@ fn test_6x6_in_14() {
 }
 
 #[test]
-fn test_square_into_4() {
+fn kmr_decompose_square_into_4() {
     let rectangle = Rectangle {
         min: [-40.0; 2],
         max: [-20.0; 2],
     };
-    let rects = kong_mount_roscoe(&rectangle, 4.try_into().unwrap());
+    let rects = kmr_decompose(&rectangle, 4.try_into().unwrap());
     assert_eq!(rects.len(), 4);
     assert!(rects.contains(&Rectangle {
         min: [-40.; 2],
@@ -512,12 +509,12 @@ fn test_square_into_4() {
 }
 
 #[test]
-fn test_square_into_5() {
+fn kmr_decompose_square_into_5() {
     let rectangle = Rectangle {
         min: [0.0; 2],
         max: [100.0; 2],
     };
-    let subdomains = kong_mount_roscoe(&rectangle, 5.try_into().unwrap());
+    let subdomains = kmr_decompose(&rectangle, 5.try_into().unwrap());
     assert_eq!(subdomains.len(), 5);
     for s in subdomains.iter() {
         println!("{s:7.2?}");

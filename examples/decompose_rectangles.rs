@@ -1,4 +1,4 @@
-use spatial_decomposition::{Rectangle, kong_mount_roscoe};
+use spatial_decomposition::{Rectangle, kmr_decompose};
 
 use plotters::prelude::*;
 
@@ -18,7 +18,7 @@ pub fn plot_decomposed_rectangle(
     .margin(0)
     .build_cartesian_2d(min[0]..max[0], min[1]..max[1])?;*/
 
-    let subdomains = kong_mount_roscoe(&rectangle, n_subdomains);
+    let subdomains = kmr_decompose(&rectangle, n_subdomains);
     let cmap = plotters::style::colors::colormaps::Bone;
     let n_subdomains = subdomains.len() + 1;
     for (n, subdomain) in subdomains.into_iter().enumerate() {
