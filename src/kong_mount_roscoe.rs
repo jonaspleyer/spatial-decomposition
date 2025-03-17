@@ -173,8 +173,8 @@ impl<F> Decomposition<F> {
                 let rects1 =
                     create_rectangles(0..n_rows1, 0..n_cols1, dx_row1, dx_col, min[1], min[0]);
                 let rects2 = create_rectangles(
-                    n_rows1..n_rows1 + n_rows2,
-                    0..n_cols2,
+                    0..n_rows2,
+                    n_cols1..n_cols1 + n_cols2,
                     dx_row2,
                     dx_col,
                     min[1],
