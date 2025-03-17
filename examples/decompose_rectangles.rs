@@ -46,6 +46,7 @@ pub fn plot_decomposed_rectangle(
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    std::fs::create_dir_all("plots")?;
     macro_rules! plot_rect(
         ($name:literal $max1:literal $max2:literal $n_subdomains:literal) => {
             plot_decomposed_rectangle(
