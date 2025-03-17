@@ -507,3 +507,36 @@ fn test_square_into_4() {
         max: [-20.0; 2]
     }));
 }
+
+#[test]
+fn test_square_into_5() {
+    let rectangle = Rectangle {
+        min: [0.0; 2],
+        max: [100.0; 2],
+    };
+    let subdomains = kong_mount_roscoe(&rectangle, 5.try_into().unwrap());
+    assert_eq!(subdomains.len(), 5);
+    for s in subdomains.iter() {
+        println!("{s:7.2?}");
+    }
+    assert!(subdomains.contains(&Rectangle {
+        min: [0.0; 2],
+        max: [50.0, 100.0 / 3.],
+    }));
+    assert!(subdomains.contains(&Rectangle {
+        min: [0.0, 100. / 3.],
+        max: [50., 100. / 3. * 2.]
+    }));
+    assert!(subdomains.contains(&Rectangle {
+        min: [0.0, 100. / 3. * 2.],
+        max: [50., 100.]
+    }));
+    assert!(subdomains.contains(&Rectangle {
+        min: [50.0, 0.],
+        max: [100., 50.]
+    }));
+    assert!(subdomains.contains(&Rectangle {
+        min: [50.0, 50.],
+        max: [100., 100.]
+    }));
+}
