@@ -141,4 +141,4 @@ We fix the number of subdomains to `n_subdomains=20`.
 | Parallel | 1000 | 6.2554 ms | 6.2311 ms | 6.2744 ms |
 | | 2000 | 24.951 ms | 24.843 ms | 25.067 ms |
 | | 3000 | 55.823 ms | 55.620 ms | 56.107 ms |
-| | 3000 | 99.835 ms | 99.150 ms | 100.73 ms |
+| | 4000 | 99.835 ms | 99.150 ms | 100.73 ms |
