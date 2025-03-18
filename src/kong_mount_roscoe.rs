@@ -422,7 +422,7 @@ where
 }
 
 #[test]
-fn kmr_digitize() {
+fn kmr_digitize_square_2x2_in_4() {
     let domain = Rectangle {
         min: [0.0; 2],
         max: [100.0; 2],
