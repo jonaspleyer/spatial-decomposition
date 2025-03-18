@@ -396,6 +396,9 @@ where
     Ok(res)
 }
 
+/// Assigns an index to a given subspace.
+///
+/// Singular version of [kmr_digitize_1].
 pub fn kmr_digitize_1_single<F>(
     decomposed_domain: &DecomposedDomain<F>,
     subspace: &Rectangle<F>,
