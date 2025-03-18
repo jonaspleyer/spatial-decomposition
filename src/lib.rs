@@ -36,6 +36,9 @@ pub struct Cuboid<F, const D: usize> {
     pub max: [F; D],
 }
 
+unsafe impl<F, const D: usize> Send for Cuboid<F, D> {}
+unsafe impl<F, const D: usize> Sync for Cuboid<F, D> {}
+
 /// `2D` variant of the [Cuboid]
 pub type Rectangle<F> = Cuboid<F, 2>;
 
