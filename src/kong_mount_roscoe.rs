@@ -299,7 +299,7 @@ where
 /// });
 /// ```
 #[allow(non_snake_case)]
-pub fn kmr_decompose<F>(rectangle: &Rectangle<F>, n_subdomains: NonZeroUsize) -> Vec<Rectangle<F>>
+pub fn kmr_decompose<F>(rectangle: &Rectangle<F>, n_subdomains: NonZeroUsize) -> DecomposedDomain<F>
 where
     F: 'static + Copy + RealField,
     F: num_traits::cast::AsPrimitive<usize>,
@@ -350,6 +350,9 @@ where
         .into_iter()
         .collect()
 }
+
+/// Returned from decomposition methods.
+pub type DecomposedDomain<F> = Vec<Rectangle<F>>;
 
 /// Error variants of decomposition or digitization
 #[derive(thiserror::Error, Debug)]
