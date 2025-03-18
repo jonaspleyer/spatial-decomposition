@@ -2,9 +2,11 @@
 //! To this date, only `1D` and `2D` algorithms are implemented.
 //!
 //! ## Overview
-//! | Dim | Domain | Method | Paper |
-//! | --- | --- | --- | --- |
-//! | `2D` | [Rectangle] | [kmr_decompose] | [Kong, Mount and Roscoe](https://scispace.com/pdf/the-decomposition-of-a-rectangle-into-rectangles-of-minimal-3whu99wjdy.pdf) |
+//! | Domain | Function | Reference |
+//! |:--- | --- |:--- |
+//! | [Rectangle] | [kmr_decompose] | [Kong, Mount and Roscoe](https://scispace.com/pdf/the-decomposition-of-a-rectangle-into-rectangles-of-minimal-3whu99wjdy.pdf) |
+//! | [Rectangle] | [kmr_digitize_1] | [Kong, Mount and Roscoe](https://scispace.com/pdf/the-decomposition-of-a-rectangle-into-rectangles-of-minimal-3whu99wjdy.pdf) |
+//! | [Rectangle] | [kmr_digitize_1_single] | [Kong, Mount and Roscoe](https://scispace.com/pdf/the-decomposition-of-a-rectangle-into-rectangles-of-minimal-3whu99wjdy.pdf) |
 
 use approx_derive::RelativeEq;
 
