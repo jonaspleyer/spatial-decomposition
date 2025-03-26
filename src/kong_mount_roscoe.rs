@@ -1,6 +1,6 @@
 use std::num::NonZeroUsize;
 
-use approx_derive::RelativeEq;
+use approx::RelativeEq;
 use num_traits::AsPrimitive;
 use simba::scalar::RealField;
 

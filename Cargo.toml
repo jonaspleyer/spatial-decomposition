@@ -14,8 +14,7 @@ keywords = [
 ]
 
 [dependencies]
-approx = "0.5.1"
-approx-derive = "0.2.2"
+approx = { package = "approxim", version = "0.6.4" }
 num-traits = "0.2.19"
 simba = "0.9.0"
 thiserror = "2.0.12"

@@ -8,7 +8,7 @@
 //! | [Rectangle] | [kmr_digitize_1] | [Kong, Mount and Roscoe](https://scispace.com/pdf/the-decomposition-of-a-rectangle-into-rectangles-of-minimal-3whu99wjdy.pdf) |
 //! | [Rectangle] | [kmr_digitize_1_single] | [Kong, Mount and Roscoe](https://scispace.com/pdf/the-decomposition-of-a-rectangle-into-rectangles-of-minimal-3whu99wjdy.pdf) |
 
-use approx_derive::RelativeEq;
+use approx::RelativeEq;
 
 /// Generalized cuboid in `D` dimensions
 ///
